@@ -1,0 +1,47 @@
+<div class="!overflow-x-auto">
+    <table class="w-full whitespace-nowrap">
+        <thead>
+            <th class="p-[15px] bg-[#eee] uppercase">title</th>
+            <th class="p-[15px] bg-[#eee] uppercase">Description</th>
+            <th class="p-[15px] bg-[#eee] uppercase">Image</th>
+            <th class="p-[15px] bg-[#eee] uppercase">Action</th>
+        </thead>
+        <tbody>
+            <% for(let service of data) { %>
+                <tr>
+                    <td class="p-[20px] bg-[#242422] text-white text-center border-[2px] border-[#eee]"><%= service.title %></td>
+                    <td class="p-[20px] bg-[#242422] text-white text-center border-[2px] border-[#eee]"><%= service.desc %></td>
+                    <td class="p-[20px] bg-[#242422] text-white text-center border-[2px] border-[#eee]"><img class="w-[200px] mx-auto" src="<%= service.image %>" alt="<%= service.title %>"></td>
+                    <td class="bg-[#242422] text-white text-center border-[2px] border-[#eee]"><a class="p-[15px] rounded-full bg-[#b5872c] block w-[80%] mx-auto" href="/services/<%= service._id %>">Edit</a></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            if(urlParams.has('success')) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: "The Data Has Been Updated Successfully",
+                    icon: 'success',
+                    confirmButtonText: 'DONE'
+                }).then(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                });
+            }
+            
+            if(urlParams.has('error')) {
+                Swal.fire({
+                    title: 'Error',
+                    text: "There Was An Error Adding Modifications.",
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                });
+            }
+        });
+</script>

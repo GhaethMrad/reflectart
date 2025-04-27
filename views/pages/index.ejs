@@ -1,0 +1,45 @@
+<div class="cards mb-[50px] grid gap-[40px] grid-cols-1 lg:grid-cols-3">
+    <div class="card flex flex-col items-center gap-[20px] text-[20px] bg-[#eee] py-[25px] rounded-tr-full rounded-bl-full">
+        <i class="fa-solid text-[#b5872c] text-[30px] fa-diagram-project"></i>
+        <span class="text-gray-400 capitalize">Projects</span>
+        <span class="text-[30px] font-bold"><%= countProjects %></span>
+    </div>
+    <div class="card flex flex-col items-center gap-[20px] text-[20px] bg-[#eee] py-[25px] rounded-tr-full rounded-bl-full">
+        <i class="fa-solid fa-list text-[#b5872c] text-[30px]"></i>
+        <span class="text-gray-400 capitalize">categories</span>
+        <span class="text-[30px] font-bold"><%= countOfCategories %></span>
+    </div>
+    <div class="card flex flex-col items-center gap-[20px] text-[20px] bg-[#eee] py-[25px] rounded-tr-full rounded-bl-full">
+        <i class="fa-solid fa-check-double text-[#b5872c] text-[30px]"></i>
+        <span class="text-gray-400 capitalize">services</span>
+        <span class="text-[30px] font-bold"><%= countServices %></span>
+    </div>
+</div>
+<hr>
+<div class="cards my-[50px] grid gap-[40px] grid-cols-1 lg:grid-cols-3">
+    <a class="card bg-[#242422] py-[25px] flex flex-col items-center hover:rounded-tr-none hover:rounded-bl-none hover:rounded-br-full hover:rounded-tl-full duration-500 gap-[20px] rounded-tr-full rounded-bl-full" href="/services">
+        <div class="text-white text-[30px] text-center py-[30px]">
+            <h2 class="part-title font-bold uppercase">all Services</h2>
+        </div>
+    </a>
+    <a class="card bg-[#242422] py-[25px] flex flex-col items-center hover:rounded-tr-none hover:rounded-bl-none hover:rounded-br-full hover:rounded-tl-full duration-500 gap-[20px] rounded-tr-full rounded-bl-full" href="/categories">
+        <div class="text-white text-[30px] text-center py-[30px]">
+            <h2 class="part-title font-bold uppercase">all Categories</h2>
+        </div>
+    </a>
+    <a class="card bg-[#242422] py-[25px] flex flex-col items-center hover:rounded-tr-none hover:rounded-bl-none hover:rounded-br-full hover:rounded-tl-full duration-500 gap-[20px] rounded-tr-full rounded-bl-full" href="/projects">
+        <div class="text-white text-[30px] text-center py-[30px]">
+            <h2 class="part-title font-bold uppercase">all Projects</h2>
+        </div>
+    </a>
+    <a class="card bg-[#242422] py-[25px] flex flex-col items-center hover:rounded-tr-none hover:rounded-bl-none hover:rounded-br-full hover:rounded-tl-full duration-500 gap-[20px] rounded-tr-full rounded-bl-full" href="/messages">
+        <div class="text-white text-[30px] text-center py-[30px]">
+            <h2 class="part-title font-bold uppercase">all Messages</h2>
+        </div>
+    </a>
+    <a class="card bg-[#242422] py-[25px] flex flex-col items-center hover:rounded-tr-none hover:rounded-bl-none hover:rounded-br-full hover:rounded-tl-full duration-500 gap-[20px] rounded-tr-full rounded-bl-full" href="/information">
+        <div class="text-white text-[30px] text-center py-[30px]">
+            <h2 class="part-title font-bold uppercase">all information</h2>
+        </div>
+    </a>
+</div>

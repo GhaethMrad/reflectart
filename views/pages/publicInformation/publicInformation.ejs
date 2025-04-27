@@ -1,0 +1,74 @@
+<div class="forms flex flex-col w-full gap-[20px] bg-[#eee] p-[20px]">
+    <h1 class="text-[30px] font-bold text-[#222]">Descriptions</h1>
+    <hr>
+    <form class="flex flex-col gap-[30px]" action="/api/information?_method=PUT" method="POST">
+        <div class="form-one flex flex-col gap-[30px]">
+       <div class="grid grid-cols-1 lg:grid-cols-3 gap-[30px]">
+        <div class="input flex flex-col gap-[15px]">
+            <label class="text-[#b5872c] text-[18px] font-bold" for="<%= data.aboutDesc %>">About Us Description</label>
+            <textarea class="bg-white outline-[#b5872c] h-[300px] p-[20px] text-[18px]" name="aboutDesc" id="<%= data.aboutDesc %>" required><%= data.aboutDesc %></textarea>
+        </div>
+        <div class="input flex flex-col gap-[15px]">
+            <label class="text-[#b5872c] text-[18px] font-bold" for="<%= data.teamDesc %>">Team Description</label>
+            <textarea class="bg-white outline-[#b5872c] h-[300px] p-[20px] text-[18px]" name="teamDesc" id="<%= data.teamDesc %>" required><%= data.teamDesc %></textarea>
+        </div>
+        <div class="input flex flex-col gap-[15px]">
+            <label class="text-[#b5872c] text-[18px] font-bold" for="<%= data.servicesDesc %>">Services Description</label>
+            <textarea class="bg-white outline-[#b5872c] h-[300px] p-[20px] text-[18px]" name="servicesDesc" id="<%= data.servicesDesc %>" required><%= data.servicesDesc %></textarea>
+        </div>
+        </div>
+
+        </div>
+        <div class="formTwo flex flex-col gap-[30px]">
+            <h1 class="text-[30px] font-bold text-[#222]">Contact Information</h1>
+            <hr>
+            <div class="flex flex-col gap-[20px]">
+                <div class="input flex flex-col gap-[15px]">
+                    <label class="text-[#b5872c] text-[18px] font-bold" for="email">Email Address</label>
+                    <input class="bg-white p-[20px] outline-[#b5872c] text-[18px]" id="email" type="email" name="email" value="<%= data.email %>" required>
+                </div>
+                <div class="input flex flex-col gap-[15px]">
+                    <label class="text-[#b5872c] text-[18px] font-bold" for="mobile">Mobile Phone and WhatsApp</label>
+                    <input class="bg-white p-[20px] outline-[#b5872c] text-[18px]" id="mobile" type="tel" name="mobile" value="<%= data.mobile %>" required>
+                </div>
+                <div class="input flex flex-col gap-[15px]">
+                    <label class="text-[#b5872c] text-[18px] font-bold" for="facebook">Facebook and Instagram Account</label>
+                    <input class="bg-white p-[20px] outline-[#b5872c] text-[18px]" id="facebook" type="text" name="facebookAndInstagram" value="<%= data.facebookAndInstagram %>" required>
+                </div>
+                <div class="input flex flex-col gap-[15px]">
+                    <label class="text-[#b5872c] text-[18px] font-bold" for="url">Website URL</label>
+                    <input class="bg-white p-[20px] outline-[#b5872c] text-[18px]" id="url" type="url" name="websiteURL" value="<%= data.websiteURL %>" required>
+                </div>
+            </div>
+            <input class="bg-[#b5872c] p-[20px] text-white uppercase rounded-full cursor-pointer" type="submit" value="EDIT">
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            if(urlParams.has('success')) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: "The Data Has Been Updated Successfully",
+                    icon: 'success',
+                    confirmButtonText: 'DONE'
+                }).then(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                });
+            }
+            
+            if(urlParams.has('error')) {
+                Swal.fire({
+                    title: 'Error',
+                    text: "There Was An Error Adding Modifications.",
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                });
+            }
+        });
+</script>

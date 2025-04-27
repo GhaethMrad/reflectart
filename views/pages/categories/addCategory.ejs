@@ -1,0 +1,38 @@
+<form class="bg-[#eee] p-[20px] flex flex-col gap-[30px]" action="/api/categories" method="POST" enctype="multipart/form-data">
+    <div class="input flex flex-col gap-[10px]">
+        <label class="text-[20px] text-[#444]" for="title">Title</label>
+        <input class="bg-white outline-none p-[20px]" type="text" name="title" id="title" required>
+    </div>
+    <div class="input flex flex-col gap-[10px]">
+        <label class="text-[20px] text-[#444] cursor-pointer" for="images">Upload Images</label>
+        <input class="bg-white outline-none p-[20px] cursor-pointer" type="file" name="images" id="images" multiple required>
+    </div>
+    <input class="bg-[#b5872c] p-[20px] cursor-pointer text-[20px] text-white" type="submit" value="Add">
+</form>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            if (urlParams.has("false")) {
+                Swal.fire({
+                    title: 'Error',
+                    text: "This Title Already Exists.",
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                });
+            }
+
+            if (urlParams.has('error')) {
+                Swal.fire({
+                    title: 'Error',
+                    text: "Only Three Photos Must Be Uploaded",
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                });
+            }
+        });
+</script>

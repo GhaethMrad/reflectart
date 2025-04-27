@@ -1,0 +1,28 @@
+<form class="flex flex-col gap-[30px]" action="/api/projects" method="POST" enctype="multipart/form-data">
+    <div class="input flex flex-col gap-[10px]">
+        <label class="test-[20px] text-[#444] capitalize" for="title">Project Title</label>
+        <input class="bg-[#eee] p-[20px] outline-none" type="text" name="title" id="title" required>
+    </div>
+    <div class="input flex flex-col gap-[10px]">
+        <label class="test-[20px] text-[#444] capitalize cursor-pointer" for="images">Upload Images</label>
+        <input class="bg-[#eee] p-[20px] outline-none cursor-pointer" type="file" name="images" id="images" multiple required>
+    </div>
+    <input class="bg-[#b5872c] p-[15px] text-[20px] text-white" type="submit" value="Add Project">
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        if (urlParams.has("title")) {
+            Swal.fire({
+                title: 'Error',
+                text: "This Title Already Exists.",
+                icon: 'error',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.history.replaceState({}, document.title, window.location.pathname);
+            });
+        }
+    })
+</script>

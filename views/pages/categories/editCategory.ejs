@@ -1,0 +1,58 @@
+<form class="flex flex-col gap-[30px]" action="/api/categories/edit/<%= data._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+    <div class="input flex flex-col gap-[10px]">
+        <label class="text-[20px] text-[#444] capitalize" for="title">Category Title</label>
+        <input class="bg-[#eee] p-[20px]" type="text" value="<%= data.title %>" name="title" id="title" required>
+    </div>
+    <div class="current-images flex flex-col gap-[10px]">
+        <h1 class="text-[20px] text-[#444] capitalize">Current Images</h1>
+        <div class="images grid grid-cols-3 gap-[20px] w-full md:w-1/2">
+            <% data.images.forEach(image => { %>
+                <img src="<%= image.url %>" alt="">
+            <% }) %>
+        </div>
+    </div>
+    <div class="input flex flex-col gap-[10px]">
+        <label class="text-[20px] text-[#444] capitalize cursor-pointer" for="images">Update Images</label>
+        <input class="bg-[#eee] p-[20px] cursor-pointer" type="file" name="images" id="images" multiple>
+    </div>
+    <input class="p-[20px] bg-[#b5872c] text-[20px] text-white cursor-pointer" type="submit" value="Update">
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            if (urlParams.has("titleUndefinde")) {
+                Swal.fire({
+                    title: 'Error',
+                    text: "This Title Is Undefined",
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                });
+            }
+
+            if (urlParams.has("titleclone")) {
+                Swal.fire({
+                    title: 'Error',
+                    text: "This Title Already Exists.",
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                });
+            }
+
+            if (urlParams.has('images')) {
+                Swal.fire({
+                    title: 'Error',
+                    text: "Only Three Photos Must Be Uploaded",
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                });
+            }
+        });
+</script>

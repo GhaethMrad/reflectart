@@ -1,0 +1,101 @@
+<div class="bg-[#242422] mb-[50px] flex items-center flex-wrap gap-[30px] justify-between p-[15px] rounded-3xl sm:p-[30px]">
+    <form class="w-full lg:w-1/2" action="/api/projects/search" method="GET">
+        <div class="input flex items-center w-full">
+            <input class="bg-[#2e2e30] w-full outline-none p-[20px] text-white rounded-tl-3xl rounded-bl-3xl" type="search" name="title" value="<%= searchQuery %>" placeholder="Search By Title">
+            <button class="bg-[#b5872c] text-white cursor-pointer duration-300 hover:bg-[#966f22] px-[25px] py-[20px] rounded-tr-3xl rounded-br-3xl" type="submit"><i class="fa-solid fa-search"></i></button>
+        </div>
+    </form>
+    <a class="bg-green-600 duration-300 flex items-center justify-center gap-1 hover:bg-green-700 px-[35px] py-[15px] rounded-3xl text-white text-[18px]" href="/projects/add"><span class="fa-solid fa-plus text-[20px]"></span>Add Project</a>
+</div>
+
+<% if (data.length > 0) { %>
+    <div class="projects grid grid-cols-1 gap-[30px] lg:grid-cols-3">
+        <% data.forEach(element => { %>
+            <div class="project flex flex-col gap-[20px] bg-[#eee] rounded-2xl">
+                <h1 class="text-[20px] text-[#444] border-b-[2px] border-[#b5872c] p-[15px]"><%= element.title %></h1>
+                <% if (element.images.length > 0) { %>
+                    <div class="images p-[15px] grid grid-cols-2 gap-[10px] border-b-[2px] border-[#b5872c]">
+                        <% element.images.forEach((image, index) => { %>
+                            <% if (index <= 3) { %>
+                                <img src="<%= image.url %>" alt="">
+                            <% } %>
+                        <% }) %>
+                    </div>
+                <% } else { %>
+                    <h1 class="w-fit mx-auto text-[40px] text-[#444] capitalize">(  Not Found  )</h1>
+                <% } %>
+                <div class="buttons p-[15px] flex justify-between items-center">
+                    <a class="text-blue-500 hover:text-blue-700" href="/projects/<%= element._id %>/images">All Images</a>
+                    <button class="delete-project py-[10px] cursor-pointer px-[20px] duration-300 bg-red-600 hover:bg-red-700 text-white capitalize" data-id="<%= element._id %>">Delete</button>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+<% } else { %>
+    <h1 class="w-fit mx-auto text-[40px] text-[#444] capitalize">(  Not Found  )</h1>
+<% } %>
+
+<script>
+    document.querySelectorAll('.delete-project').forEach((ele) => {
+        ele.addEventListener("click", () => {
+            let projectId = ele.getAttribute("data-id");
+            let deleteUrl = `/api/projects/${projectId}?_method=DELETE`;
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you really want to delete the selected project?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete!",
+                cancelButtonText: "cancel"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let form = document.createElement("form");
+                    form.method = "POST";
+                    form.action = deleteUrl;
+                    document.body.appendChild(form)
+                    form.submit();
+                }
+            })
+        })
+    })
+
+    document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            if(urlParams.has('success')) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: "The Data Has Been Added Successfully",
+                    icon: 'success',
+                    confirmButtonText: 'DONE'
+                }).then(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                });
+            }
+
+            if (urlParams.has("deleted")) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: "The Data Has Been Deleted Successfully",
+                    icon: 'success',
+                    confirmButtonText: 'DONE'
+                }).then(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                });
+            }
+
+            if (urlParams.has("error")) {
+                Swal.fire({
+                    title: 'Error',
+                    text: decodeURIComponent(urlParams.get('error')),
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                });
+            }
+        });
+</script>

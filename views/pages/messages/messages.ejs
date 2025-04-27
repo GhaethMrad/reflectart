@@ -1,0 +1,51 @@
+<div class="overflow-x-auto">
+    <table class="w-full">
+        <thead>
+            <tr>
+                <th class="border-[3px] border-gray-300">Name</th>
+                <th class="border-[3px] border-gray-300">Email</th>
+                <th class="border-[3px] border-gray-300">Message</th>
+                <th class="border-[3px] border-gray-300">Date</th>
+                <th class="border-[3px] border-gray-300">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (messages.length > 0) { %>
+                <% messages.forEach(message => { %>
+                    <tr>
+                        <td class="border-[3px] border-gray-300 p-[15px] text-center"><%= message.name %></td>
+                        <td class="border-[3px] border-gray-300 p-[15px] text-center"><%= message.email %></td>
+                        <td class="border-[3px] border-gray-300 p-[15px] text-center"><%= message.message %></td>
+                        <td class="border-[3px] border-gray-300 p-[15px] text-center"><%= message.createdAt %></td>
+                        <td class="border-[3px] border-gray-300 p-[15px] text-center">
+                            <form action="/api/messages/<%= message._id %>?_method=DELETE" method="POST">
+                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md cursor-pointer">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="5" class="border-[3px] border-gray-300 p-[15px] text-center">No messages found</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+
+        if(urlParams.has('deleted')) {
+            Swal.fire({
+                title: 'Success!',
+                text: "The Data Has Been Deleted Successfully",
+                icon: 'success',
+                confirmButtonText: 'DONE'
+            }).then(() => {
+                window.history.replaceState({}, document.title, window.location.pathname);
+            })
+        }
+    })
+</script>

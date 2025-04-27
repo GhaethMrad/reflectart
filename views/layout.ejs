@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/styles/layout.css">
+    <title><%= title %></title>
+</head>
+<body class="overflow-x-hidden">
+    <div class="flex">
+       <div class="aside ml-[-100%] z-[200] min-w-full min-h-screen absolute lg:min-w-[280px] lg:ml-0 lg:relative">
+        <aside class="aside fixed z-[50] !top-0 w-full bg-[#242422] h-full flex flex-col lg:w-[280px]">
+            <i class="fa-solid fa-xmark block z-[100] text-[50px] text-red-600 absolute bottom-[20px] left-[50%] translate-x-[-50%] cursor-pointer sm:!hidden"></i>
+            <a class="p-[20px] relative w-full select-none bg-[#eee] font-bold text-center mb-[30px] text-[#b5872c] uppercase text-[16px] border-y-[5px] border-[#b5872c] lg:text-[25px]" href="/dashboard">
+                <h1>Reflectart</h1>
+            </a>
+            <div class="drop-down-menu mb-[20px] px-[20px] text-white">
+                <div class="toggle-menu cursor-pointer flex justify-between items-center">
+                    <h2 class="text-[16px] lg:text-[20px] hover:text-[#b5872c] select-none">About Reflectart</h2>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <ul class="menu overflow-hidden mt-[20px] !max-h-fit capitalize !list-disc">
+                    <li class="ml-[20px] !h-fit duration-300 hover:text-[#CCC]"><a href="/information">public information</a></li>
+                </ul>
+            </div>
+            <div class="drop-down-menu px-[20px] text-white">
+                <div class="toggle-menu cursor-pointer flex justify-between items-center">
+                    <h2 class="text-[16px] lg:text-[20px] hover:text-[#b5872c] select-none">Tables</h2>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <ul class="menu overflow-hidden flex flex-col capitalize !list-disc">
+                    <li class="ml-[20px] p-[10px] duration-300 hover:text-[#CCC]"><a href="/services">Services</a></li>
+                    <li class="ml-[20px] p-[10px] duration-300 hover:text-[#CCC]"><a href="/categories">Categories</a></li>
+                    <li class="ml-[20px] p-[10px] duration-300 hover:text-[#CCC]"><a href="/projects">Projects</a></li>
+                    <li class="ml-[20px] p-[10px] duration-300 hover:text-[#CCC]"><a href="/messages">Messages</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+        <main class="w-full">
+            <header class="sticky top-0 w-full z-[100] p-[15px] font-bold bg-[#242422] flex items-center justify-between text-[30px] text-[#b5872c]">
+                <i class="fa-solid fa-bars toggle-aside cursor-pointer text-[#b5872c] block sm:!hidden"></i>
+                <h1 class="text-center">Hello GhaethMrad</h1>
+            </header>
+            <div class="main-contents relative py-[20px] sm:p-[20px]">
+                <div class="page-name mb-[100px] w-full text-center bg-[#242422] text-white py-20 text-[40px] uppercase font-bold rounded-tr-full rounded-bl-full">
+                    <h1><%= pageName %></h1>
+                </div>
+                <%- include(page) %>
+            </div>
+        </main>
+    </div>
+    <script src="/js/main.js"></script>
+</body>
+</html>

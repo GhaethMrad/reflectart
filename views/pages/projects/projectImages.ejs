@@ -1,0 +1,45 @@
+<form class="bg-[#242422] mb-[50px] flex items-center flex-wrap gap-[30px] justify-between p-[15px] rounded-3xl sm:p-[30px]" action="/api/projects/<%= data._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+    <input class="p-[15px] bg-white cursor-pointer" type="file" name="images" id="" multiple required>
+    <input class="py-[15px] px-[25px] text-white rounded-2xl cursor-pointer bg-green-600 duration-300 hover:bg-green-700" type="submit" value="Add Images">
+</form>
+<% if (data.images.length > 0) { %>
+    <div class="images grid grid-cols-1 gap-[20px] md:grid-cols-2 lg:grid-cols-4">
+        <% data.images.forEach(image => { %>
+            <div class="image p-[20px] bg-[#eee] rounded-2xl flex flex-col gap-[10px]">
+                <img class="h-full w-full" src="<%= image.url %>" alt="">
+                <form action="/api/projects/image/<%= data._id %>?_method=DELETE&id=<%= image.id %>" method="POST">
+                    <input class="bg-red-600 w-full duration-300 hover:bg-red-700 text-white capitalize p-[15px] cursor-pointer" type="submit" value="Delete">
+                </form>
+            </div>
+        <% }) %>
+    </div>
+<% } else { %>
+    <h1 class="w-fit mx-auto text-[40px] text-[#444] capitalize">(  Not Found  )</h1>
+<% } %>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const params = new URLSearchParams(window.location.search)
+
+        if(params.has('success')) {
+            Swal.fire({
+                title: 'Success!',
+                text: "The Images Has Been Added Successfully",
+                icon: 'success',
+                confirmButtonText: 'DONE'
+            }).then(() => {
+                window.history.replaceState({}, document.title, window.location.pathname);
+            });
+        }
+        if (params.has("deleted")) {
+            Swal.fire({
+                title: 'Success!',
+                text: "The Images Has Been Deleted Successfully",
+                icon: 'success',
+                confirmButtonText: 'DONE'
+            }).then(() => {
+                window.history.replaceState({}, document.title, window.location.pathname);
+            });
+        }
+    })
+</script>

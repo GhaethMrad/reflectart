@@ -1,0 +1,15 @@
+<form class="w-full flex flex-col gap-[25px]" action="/api/services/<%= data._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+    <div class="input flex flex-col gap-[15px]">
+        <label class="text-[25px] text-[#444]" for="title">Service Title</label>
+        <input class="p-[20px] bg-[#eee] text-[18px]" name="title" id="title" type="text" value="<%= data.title %>" required>
+    </div>
+    <div class="input flex flex-col gap-[15px]">
+        <label class="text-[25px] text-[#444]" for="desc">Description</label>
+        <textarea class="p-[20px] text-[18px] bg-[#eee] h-[300px]" name="desc" id="desc" required><%= data.desc %></textarea>
+    </div>
+    <div class="input flex flex-col gap-[15px]">
+        <label class="text-[25px] text-[#444]" for="img">Service Image</label>
+        <input class="p-[20px] bg-[#eee] text-[18px] cursor-pointer" type="file" name="image" id="img">
+    </div>
+    <input class="p-[20px] bg-[#b5872c] text-white text-[18px] cursor-pointer" type="submit" value="Update Service">
+</form>

@@ -1,0 +1,29 @@
+.aside {
+    transition: all 0.5s;
+}
+.aside.show {
+    margin-left: 0;
+}
+.main-contents {
+    transition: all 0.5s;
+}
+.toggle-menu {
+    transition-duration: 0.5s;
+}
+.toggle-menu.active {
+    color: #b5872c;
+}
+.menu {
+    transition: all 0.5s ease-in-out;
+    height: 0;
+    position: relative;
+}
+.menu.active {
+    height: 100%;
+}
+.page-name h1 {
+    text-shadow: -3px 3px #242422, -4px 4px #b5872c;
+}
+.part-title {
+    text-shadow: -3px 3px #242422, -4px 4px #b5872c;
+}
