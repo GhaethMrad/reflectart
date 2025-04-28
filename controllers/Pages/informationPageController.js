@@ -1,5 +1,4 @@
-import InformationModel from "../../models/information.model.js";
-
+import InformationModel from "../../models/PublicInformation.model.js";
 
 export const publicInformation = async (req, res) => {
   res.render("layout.ejs", {

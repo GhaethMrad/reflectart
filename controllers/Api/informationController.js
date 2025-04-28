@@ -1,4 +1,4 @@
-import InformationModel from "../../models/information.model.js";
+import InformationModel from "../../models/PublicInformation.model.js";
 
 export const getInformation = async (req, res) => {
   const getAllinformation = await InformationModel.find();
